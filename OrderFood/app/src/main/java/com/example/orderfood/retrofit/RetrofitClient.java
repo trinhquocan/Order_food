@@ -1,10 +1,7 @@
 package com.example.orderfood.retrofit;
-
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Url;
-
 public class RetrofitClient {
     private static Retrofit instance;
     public static Retrofit getInstance(String baseUrl)

@@ -1,27 +1,24 @@
 package com.example.orderfood.activity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.orderfood.R;
 import com.example.orderfood.adapter.LoaiSpAdapter;
 import com.example.orderfood.adapter.SpBanChayAdapter;
@@ -31,16 +28,11 @@ import com.example.orderfood.retrofit.ApiBanHang;
 import com.example.orderfood.retrofit.RetrofitClient;
 import com.example.orderfood.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-
-
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -72,11 +64,34 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             getLoaiSanPham();
             getSpBanChay();
+            getEvenClick();
+
         }else
         {
             Toast.makeText(getApplicationContext(), "khong co ket noi, vui long kiem tra lai", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void getEvenClick() {
+        listViewManHinhChinh.setOnItemClickListener((adapterView, view, i, l) -> {
+            switch (i) {
+                case 0:
+                    Intent trangchu = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(trangchu);
+                    break;
+                case 1:
+                    Intent com = new Intent(getApplicationContext(), ComActivity.class);
+//                    com.putExtra("LOAI",2);
+                    startActivity(com);
+                    break;
+                case 2:
+                    Intent pho = new Intent(getApplicationContext(), PhoActivity.class);
+                    startActivity(pho);
+                    break;
+            }
+        });
+    }
+
 
     private void getSpBanChay() {
         compositeDisposable.add(apiBanHang.getSpBanChay()
