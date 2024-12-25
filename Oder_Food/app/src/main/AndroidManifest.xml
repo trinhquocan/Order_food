@@ -19,26 +19,63 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.DangnhapActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".activity.DangkiActivity"
+            android:exported="true" />
+
+        <!-- Cart Activity -->
+        <activity
             android:name=".activity.GioHangActivity"
             android:exported="false" />
+
+        <!-- Detail Activity -->
         <activity
             android:name=".activity.ChiTietActivity"
             android:exported="false" />
+
+        <!-- Food Categories -->
         <activity
             android:name=".activity.ComActivity"
             android:exported="false" />
         <activity
             android:name=".activity.PhoActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
+    <!--        <activity-->
+    <!--            android:name=".activity.GioHangActivity"-->
+    <!--            android:exported="false" />-->
+    <!--        <activity-->
+    <!--            android:name=".activity.ChiTietActivity"-->
+    <!--            android:exported="false" />-->
+    <!--        <activity-->
+    <!--            android:name=".activity.ComActivity"-->
+    <!--            android:exported="false" />-->
+    <!--        <activity-->
+    <!--            android:name=".activity.PhoActivity"-->
+    <!--            android:exported="false" />-->
+    <!--        <activity-->
+    <!--            android:name=".activity.MainActivity"-->
+    <!--            android:exported="true">-->
+    <!--            <intent-filter>-->
+    <!--                <action android:name="android.intent.action.MAIN" />-->
+
+    <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+    <!--            </intent-filter>-->
+    <!--        </activity>-->
+    <!--    </application>-->
 
 </manifest>
