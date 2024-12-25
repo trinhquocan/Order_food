@@ -1,6 +1,9 @@
 <?php
 include "ketnoi.php";
-$query = "SELECT * FROM `mon_an_ban_chay` ORDER BY MAMONAN DESC";
+
+// $query = "SELECT * FROM `mon_an_ban_chay` ORDER BY MAMONAN DESC";
+$query = "SELECT * FROM `mon_an_ban_chay` WHERE `LOAI` = 2 LIMIT 0,5";
+
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data))

@@ -1,6 +1,6 @@
 <?php
 include "ketnoi.php";
-$query = "SELECT * FROM `mon_an`";
+$query = "SELECT * FROM `loai_mon_an`";
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data))

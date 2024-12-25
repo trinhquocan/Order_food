@@ -1,6 +1,13 @@
 <?php
 include "ketnoi.php";
-$query = "SELECT * FROM `mon_an_ban_chay` ORDER BY MAMONAN DESC";
+$page = $_POST['page'];
+$total = 5;
+$pos = ($page-1)*$total;
+$loai = $_POST['LOAI'];
+
+
+$query = "SELECT * FROM `mon_an_ban_chay` WHERE `LOAI` = 2 LIMIT 0,5
+";
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data))
@@ -12,14 +19,14 @@ while ($row = mysqli_fetch_assoc($data))
 if(!empty($result))
 {
     $arr = [
-        'success' => true,
-        'message' => "thanh cong",
+        // 'success' => true,
+        // 'message' => "thanh cong",
         'result' => $result
     ];
 }else{
     $arr = [
-        'success' => false,
-        'message' => "khong thanh cong",
+        // 'success' => false,
+        // 'message' => "khong thanh cong",
         'result' => $result
     ];
 }
