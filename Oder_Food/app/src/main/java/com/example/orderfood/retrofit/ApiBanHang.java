@@ -57,5 +57,16 @@ public interface ApiBanHang {
     Observable<SpBanChayModel> search(
             @Field("search") String search
     );
+
+    @POST("donhang.php")
+    @FormUrlEncoded
+    Observable<UserModel> createOders(
+            @Field("user_id") int user_id,
+            @Field("tongtien") String tongtien,
+            @Field("diachi") String diachi,
+            @Field("sodienthoai") String sodienthoai,
+            @Field("soluong") int soluong,
+            @Field("chitiet") String chitiet
+    );
 }
 
