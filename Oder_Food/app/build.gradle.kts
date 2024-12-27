@@ -61,7 +61,9 @@ dependencies {
 //event bus
     implementation("org.greenrobot:eventbus:3.3.1")
 
+    implementation("com.google.code.gson:gson:2.11.0")
 
+    implementation("io.github.pilgr:paperdb:2.7.2")
 
     implementation ("com.airbnb.android:lottie:4.2.2")
 
