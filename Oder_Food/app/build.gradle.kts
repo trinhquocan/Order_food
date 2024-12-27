@@ -58,8 +58,12 @@ dependencies {
 
 //event bus
     implementation("org.greenrobot:eventbus:3.3.1")
+//event bus
+    implementation("org.greenrobot:eventbus:3.3.1")
 
 
+
+    implementation ("com.airbnb.android:lottie:4.2.2")
 
 
 }

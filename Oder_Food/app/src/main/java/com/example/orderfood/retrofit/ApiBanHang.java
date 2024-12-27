@@ -51,5 +51,11 @@ public interface ApiBanHang {
             @Field("username") String username,
             @Field("password") String password
     );
+
+    @POST("timkiem.php")
+    @FormUrlEncoded
+    Observable<SpBanChayModel> search(
+            @Field("search") String search
+    );
 }
 
