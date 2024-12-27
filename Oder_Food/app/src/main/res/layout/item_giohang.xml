@@ -86,6 +86,12 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+            <CheckBox
+                android:padding="5dp"
+                android:id="@+id/item_giohang_checkbox"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
