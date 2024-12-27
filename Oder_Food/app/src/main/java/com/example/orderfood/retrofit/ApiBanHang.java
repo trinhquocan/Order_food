@@ -52,6 +52,12 @@ public interface ApiBanHang {
             @Field("password") String password
     );
 
+    @POST("timkiem.php")
+    @FormUrlEncoded
+    Observable<SpBanChayModel> search(
+            @Field("search") String search
+    );
+
     @POST("donhang.php")
     @FormUrlEncoded
     Observable<UserModel> createOders(
