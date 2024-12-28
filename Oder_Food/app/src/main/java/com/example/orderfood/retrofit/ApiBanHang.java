@@ -24,8 +24,9 @@ public interface ApiBanHang {
     @POST("getspbanchay2.php")
     Observable<SpBanChayModel> getSpBanChay2();
 
-//    @POST("getspbanchay3.php")
-//    Observable<SpBanChayModel> getSpBanChay3();
+    @POST("getspbanchay3.php")
+    Observable<SpBanChayModel> getSpBanChay3();
+
 
 //    @POST("chitiet.php")
 //    @FormUrlEncoded

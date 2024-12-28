@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case 3:
-                    Intent lienhe = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent lienhe = new Intent(getApplicationContext(), KhacActivity.class);
                     startActivity(lienhe);
                     break;
             }
