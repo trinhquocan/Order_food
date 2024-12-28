@@ -1,10 +1,13 @@
 package com.example.orderfood.activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.security.identity.InvalidRequestMessageException;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,8 @@ import com.example.orderfood.model.SpBanChay;
 import com.example.orderfood.retrofit.ApiBanHang;
 import com.example.orderfood.retrofit.RetrofitClient;
 import com.example.orderfood.utils.Utils;
+import com.nex3z.notificationbadge.NotificationBadge;
+
 import java.util.ArrayList;
 import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -35,6 +40,10 @@ public class ComActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     Handler handler;
     boolean isLoading = false;
+    FrameLayout frameLayout;
+    ImageView imgSearch;
+    NotificationBadge badge;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,53 +54,9 @@ public class ComActivity extends AppCompatActivity {
             AnhXa();
             ActionToolBar();
             getData();
-//            addEventLoad();
-    getData();
         }
 
-//    private void addEventLoad() {
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//            }
 //
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                if (isLoading == false){
-//                    if (linearLayoutManager.findLastCompletelyVisibleItemPosition() == spBanChayList.size()-1){
-//                        isLoading = true;
-////                        loadMore();
-//                    }
-//                }
-//            }
-//
-//
-//        });
-//
-//    }
-//    private void loadMore() {
-//        handler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                spBanChayList.add(null);
-//                AdapterCom.notifyItemInserted(spBanChayList.size()-1);
-//            }
-//        });
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                spBanChayList.remove(spBanChayList.size()-1);
-//                AdapterCom.notifyItemRemoved(spBanChayList.size());
-//                page = page+1;
-////                getData(page);
-//                getData();
-//                AdapterCom.notifyDataSetChanged();
-//                isLoading = false;
-//            }
-//        }, 2000);
-//    }
 
     private void ActionToolBar() {
             setSupportActionBar(toolbar);  // Thiết lập Toolbar làm ActionBar
@@ -125,36 +90,6 @@ public class ComActivity extends AppCompatActivity {
                 ));
     }
 
-//    private void getData(int page) {
-//        compositeDisposable.add(apiBanHang.getSanPham(page,loai)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        spBanChayModel -> {
-//                            if (spBanChayModel != null && spBanChayModel.isSuccess() && spBanChayModel.getResult() != null) {
-//                                spBanChayList = spBanChayModel.getResult();
-//                                // Kiểm tra nếu danh sách rỗng
-//                                if (spBanChayList != null && !spBanChayList.isEmpty()) {
-//                                    ComAdapter comAdapter = new ComAdapter(getApplicationContext(), spBanChayList);
-//                                    recyclerView.setAdapter(comAdapter);
-//                                } else {
-//                                    // Hiển thị thông báo nếu không có sản phẩm
-//                                    Toast.makeText(getApplicationContext(), "Không có sản phẩm nào", Toast.LENGTH_SHORT).show();
-//                                }
-//                            } else {
-//                                // Hiển thị thông báo nếu API không trả về thành công
-//                                Toast.makeText(getApplicationContext(), "Dữ liệu không hợp lệ hoặc API không thành công", Toast.LENGTH_LONG).show();
-//                            }
-//                        },
-//                        throwable -> {
-//                            // Log chi tiết lỗi để dễ dàng xử lý hơn
-//                            Log.e("API_ERROR", "Error fetching data", throwable);
-//                            Toast.makeText(getApplicationContext(), "Không kết nối với server:s " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-//                        }
-//                ));
-//    }
-
-
 
 
     private void AnhXa() {
@@ -165,6 +100,49 @@ public class ComActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         spBanChayList = new ArrayList<>();
+        frameLayout = findViewById(R.id.framegiohang); // ID của layout giỏ hàng
+        imgSearch = findViewById(R.id.imgsearch);  // ID của biểu tượng tìm kiếm
+        badge = findViewById(R.id.menu_sl);
+
+        if (Utils.manggiohang == null) {
+            Utils.manggiohang = new ArrayList<>();
+
+        } else {
+            int totalItem = 0;
+            for (int i = 0; i < Utils.manggiohang.size(); i++) {
+                totalItem = totalItem + Utils.manggiohang.get(i).getSoluong();
+            } badge.setText(String.valueOf(totalItem));
+        }
+
+            frameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent giohang = new Intent(getApplicationContext(), GioHangActivity.class);
+                    startActivity(giohang);
+                }
+            });
+
+            imgSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
+                }
+            });
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int totalItem = 0;
+        for (int i = 0; i < Utils.manggiohang.size(); i++) {
+            totalItem = totalItem + Utils.manggiohang.get(i).getSoluong();
+        }
+
+        badge.setText(String.valueOf(totalItem));
+
     }
 
     @Override

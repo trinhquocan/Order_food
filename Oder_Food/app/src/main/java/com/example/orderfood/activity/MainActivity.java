@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     SpBanChayAdapter spBanChayAdapter;
     NotificationBadge badge;
     FrameLayout frameLayout;
+    ImageView imgsearch;
 
 
     @Override
@@ -59,11 +60,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
-     //   EdgeToEdge.enable(this);
 
         Anhxa();
         ActionBar();
-//        ActionViewFlipper();
 
         if(isConnected(this)){
             ActionViewFlipper();
@@ -182,6 +181,7 @@ private void ActionViewFlipper() {
         });
     }
     private void Anhxa(){
+        imgsearch = findViewById(R.id.imgsearch);
         toolbar   = findViewById(R.id.toolbarmanhinhchinh);
         viewFlipper = findViewById(R.id.viewlipper);
         recyclerViewManHinhChinh = findViewById(R.id.recyclerview);
@@ -197,21 +197,29 @@ private void ActionViewFlipper() {
         badge = findViewById(R.id.menu_sl);
         frameLayout = findViewById(R.id.framegiohang);
 
-        if (Utils.manggiohang == null) {
-            Utils.manggiohang = new ArrayList<>();
+            if (Utils.manggiohang == null) {
+                Utils.manggiohang = new ArrayList<>();
 
-        } else {
-            int totalItem = 0;
-            for (int i = 0; i < Utils.manggiohang.size(); i++) {
-                totalItem = totalItem + Utils.manggiohang.get(i).getSoluong();
-            } badge.setText(String.valueOf(totalItem));
-        }
+            } else {
+                int totalItem = 0;
+                for (int i = 0; i < Utils.manggiohang.size(); i++) {
+                    totalItem = totalItem + Utils.manggiohang.get(i).getSoluong();
+                } badge.setText(String.valueOf(totalItem));
+            }
 
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent giohang = new Intent(getApplicationContext(), GioHangActivity.class);
                 startActivity(giohang);
+            }
+        });
+
+        imgsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent search = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(search);
             }
         });
     }

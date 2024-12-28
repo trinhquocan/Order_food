@@ -20,24 +20,38 @@
                 android:background="#ff00dfff"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
-                <FrameLayout
-                    android:id="@+id/framegiohang"
+                <LinearLayout
                     android:layout_gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="50dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize" >
-                    <com.nex3z.notificationbadge.NotificationBadge
-                        android:id="@+id/menu_sl"
-                        android:layout_gravity="top|right"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp" />
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/cart_24" />
+                        android:id="@+id/imgsearch"
+                        android:layout_marginRight="10dp"
 
-                </FrameLayout>
+                        android:src="@drawable/search_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?attr/actionBarSize"/>
+                    <FrameLayout
+                        android:id="@+id/framegiohang"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="?attr/actionBarSize" >
+                        <com.nex3z.notificationbadge.NotificationBadge
+                            android:id="@+id/menu_sl"
+                            android:layout_gravity="top|right"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp" />
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/cart_24" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
             </androidx.appcompat.widget.Toolbar>
             <ViewFlipper
                 android:id="@+id/viewlipper"
