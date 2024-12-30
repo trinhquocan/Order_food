@@ -46,6 +46,9 @@
             android:name=".activity.GioHangActivity"
             android:exported="true" /> <!-- Detail Activity -->
         <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="true" /> <!-- Detail Activity -->
+        <activity
             android:name=".activity.ChiTietActivity"
             android:exported="true" /> <!-- Food Categories -->
         <activity
