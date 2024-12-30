@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent lienhe = new Intent(getApplicationContext(), KhacActivity.class);
                     startActivity(lienhe);
                     break;
+                case 4:
+                    Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+                    startActivity(profile);
+                    break;
             }
         });
     }

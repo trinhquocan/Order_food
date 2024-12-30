@@ -1,6 +1,8 @@
 package com.example.orderfood.retrofit;
 
 import io.reactivex.rxjava3.core.Observable;  // Import đúng Observable của RxJava 3
+
+import com.example.orderfood.model.DonHangModel;
 import com.example.orderfood.model.LoaiSpModel;
 import com.example.orderfood.model.SpBanChay;
 import com.example.orderfood.model.SpBanChayModel;
@@ -68,6 +70,12 @@ public interface ApiBanHang {
             @Field("sodienthoai") String sodienthoai,
             @Field("soluong") int soluong,
             @Field("chitiet") String chitiet
+    );
+
+    @POST("xemdonhang.php")
+    @FormUrlEncoded
+    Observable<DonHangModel> xemDonHang(
+            @Field("iduser") int id
     );
 }
 
